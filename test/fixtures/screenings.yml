@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie: one
+  room: one
+  starts_at: 2026-06-03 14:26:11
+  price: 1
+
+two:
+  movie: two
+  room: two
+  starts_at: 2026-06-03 14:26:11
+  price: 1

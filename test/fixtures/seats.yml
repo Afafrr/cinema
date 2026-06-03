@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room: one
+  row_no: 1
+  seat_no: 1
+
+two:
+  room: two
+  row_no: 1
+  seat_no: 1
