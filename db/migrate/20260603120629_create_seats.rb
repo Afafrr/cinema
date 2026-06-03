@@ -8,6 +8,6 @@ class CreateSeats < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    add_index :seats, [:room_id, :row_no, :seat_no], unique: true
+    add_index :seats, [ :room_id, :row_no, :seat_no ], unique: true
   end
 end
