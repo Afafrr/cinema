@@ -7,4 +7,5 @@ class Screening < ApplicationRecord
 
   validates :movie_id, :room_id, :starts_at, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
+  validates :starts_at, uniqueness: { scope: :room_id }
 end
