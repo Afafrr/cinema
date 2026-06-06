@@ -1,0 +1,25 @@
+<h1>Screenings</h1>
+<h2><%= @movie.title %></h2>
+<p class="font-semibold">Description:</p>
+<p><%= @movie.description %></p>
+<br>
+
+<h3>Screenings:</h3>
+<% @screenings.group_by { |screening| screening.starts_at.to_date }.each do |day, screenings| %>
+  <h4 class="mt-3 mb-3 text-lg font-semibold"><%= day.strftime("%d.%m.%Y") %></h4>
+
+  <section class="grid grid-cols-[repeat(auto-fit,minmax(100px,150px))] gap-4">
+    <% screenings.each do |screening| %>
+      <div class="flex flex-wrap gap-4 justify-evenly items-center rounded border py-1">
+        <div>
+          <p class="text-sm font-semibold">Time:</p>
+          <span class="text-lg"><%= screening.starts_at.strftime("%H:%M") %></span>
+        </div>
+        <div>
+          <p class="text-sm font-semibold">Price:</p>
+          <span class="text-lg"><%= screening.price %> zł</span>
+        </div>
+      </div>
+    <% end %>
+  </section>
+<% end %>

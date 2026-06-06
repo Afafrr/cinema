@@ -1,4 +1,11 @@
 <h1>Movies</h1>
-<div>
 
+<div class="grid">
+    <% @movies.each do |movie| %>
+        <%= link_to movie_path(movie) do %>
+            <div >
+                <h2><%= movie.title %></h2>
+            </div>
+        <% end %>
+    <% end %>
 </div>
