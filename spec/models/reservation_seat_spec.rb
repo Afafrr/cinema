@@ -5,8 +5,8 @@ RSpec.describe ReservationSeat, type: :model do
   let(:room) { Room.create!(name: "Room 1") }
   let(:screening) { Screening.create!(movie: movie, room: room, starts_at: Time.current, price: 25) }
   let(:seat) { Seat.create!(room: room, row_no: 1, seat_no: 1) }
-  let(:user1) { User.create!(email: "user1@example.com", password_digest: "password") }
-  let(:user2) { User.create!(email: "user2@example.com", password_digest: "password") }
+  let(:user1) { User.create!(email: "user1@example.com", password: "password") }
+  let(:user2) { User.create!(email: "user2@example.com", password: "password") }
   let(:reservation1) { Reservation.create!(user: user1, screening: screening) }
 
   it "it's not possible to reserve same seat twice on same screening" do
