@@ -1,0 +1,13 @@
+<nav class="mb-4 flex px-6 py-2 sm:px-10 lg:px-12 bg-indigo-950 text-white">
+  <%= link_to "Movies", movies_path %>
+
+  <div class="ml-auto flex items-center gap-4">
+    <% if user_signed_in? %>
+      <span><%= current_user.email %></span>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "cursor-pointer" %>
+    <% else %>
+      <%= link_to "Sign in", new_user_session_path %>
+      <%= link_to "Sign up", new_user_registration_path %>
+    <% end %>
+  </div>
+</nav>

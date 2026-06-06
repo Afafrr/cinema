@@ -24,9 +24,10 @@
   </head>
 
   <body>
-    <main class="mx-auto mt-10 max-w-5xl px-6 sm:px-10 lg:px-12">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <%= render 'layouts/navigation' %>
+    <main class="mx-auto mt-2 max-w-5xl px-6 sm:px-10 lg:px-12">
+      <%= render 'layouts/alerts' %>
+
       <%= yield %>
     </main>
   </body>
