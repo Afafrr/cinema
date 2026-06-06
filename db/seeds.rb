@@ -10,19 +10,19 @@ users_data = [
   {
     key: :customer,
     email: "customer@example.com",
-    password_digest: "password",
+    password: "password",
     role: "customer"
   },
   {
     key: :second_customer,
     email: "anna@example.com",
-    password_digest: "password",
+    password: "password",
     role: "customer"
   },
   {
     key: :employee,
     email: "employee@example.com",
-    password_digest: "password",
+    password: "password",
     role: "employee"
   }
 ]
@@ -59,7 +59,7 @@ users = {}
 users_data.each do |user_data|
   users[user_data[:key]] = User.create!(
     email: user_data[:email],
-    password_digest: user_data[:password_digest],
+    password: user_data[:password],
     role: user_data[:role]
   )
 end
