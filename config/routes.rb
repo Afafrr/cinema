@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :employee do # grouped under /employee
     get "dashboard", to: "dashboard#index", as: :dashboard
+    resources :movies, except: [ :show ]
   end
 
   root "movies#index"
