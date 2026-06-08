@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :movies, only: [:index, :show]
   resources :screenings, only: [:show]
+  resources :reservations, only: [:create]
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
