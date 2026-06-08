@@ -16,13 +16,15 @@
             <span class="font-medium w-5"><%= row_no %></span>
 
             <% seat.each do |seat| %>
-              <label class="cursor-pointer">
-                <%= check_box_tag "seat_ids[]", value: seat.id, checked: false, disabled: false, 
+              <% reserved = @reservation_seats_ids.include?(seat.id) %>
+
+              <label class="<%= reserved ? "opacity-30" : "cursor-pointer" %>">
+                <%= check_box_tag "seat_ids[]", value: seat.id, checked: false, disabled: reserved, 
                     class: "sr-only peer"
                 %>
                 <%= image_tag "seat_icon.svg",
                   alt: "Seat Row #{row_no}, number #{seat.seat_no}",
-                  class: "w-9 h-9 sm:w-10 sm:h-10 rotate-180 opacity-60 peer-checked:opacity-100 peer-checked:scale-101 transition"
+                  class: "w-9 h-9 sm:w-10 sm:h-10 rotate-180 opacity-50 peer-checked:opacity-100 peer-checked:scale-101 transition-opacity duration-200"
                 %>
               </label>
             <% end %>
