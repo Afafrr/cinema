@@ -19,3 +19,21 @@
   }
 
 }
+
+@layer components {
+  .btn {
+    @apply inline-block rounded-md px-3.5 py-2.5 text-center text-sm font-medium cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-indigo-600 text-white hover:bg-indigo-500;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 hover:bg-gray-50;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-500;
+  }
+}

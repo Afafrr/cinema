@@ -1,10 +1,9 @@
 <% content_for :title, "Movies" %>
-<% button_base_class = "rounded-md px-3.5 py-2.5 font-small" %>
 
 <div class="w-full">
   <div class="flex items-start justify-between">
     <h1 class="font-bold text-4xl">Movies</h1>
-    <%= link_to "New movie", new_employee_movie_path, class: "#{button_base_class} bg-blue-600 hover:bg-blue-500 text-white block" %>
+    <%= link_to "New movie", new_employee_movie_path, class: "btn btn-primary block" %>
   </div>
 
   <div id="employee_movies" class="min-w-full divide-y divide-gray-200 space-y-5">
@@ -14,8 +13,8 @@
           <%= link_to employee_movie.title, movie_path(employee_movie) %>
 
           <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Edit", edit_employee_movie_path(employee_movie), class: "#{button_base_class} w-full sm:w-auto text-center bg-gray-100 hover:bg-gray-50 inline-block" %>
-            <%= button_to "Destroy", employee_movie_path(employee_movie), method: :delete, class: "#{button_base_class} w-full sm:w-auto text-white bg-red-600 hover:bg-red-500 cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+            <%= link_to "Edit", edit_employee_movie_path(employee_movie), class: "btn btn-secondary w-full sm:w-auto" %>
+            <%= button_to "Destroy", employee_movie_path(employee_movie), method: :delete, class: "btn btn-danger w-full sm:w-auto", data: { turbo_confirm: "Are you sure?" } %>
            </div>
         </div>
       <% end %>
