@@ -2,8 +2,13 @@ class ReservationsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    seat_ids = params[:seat_ids]
+    seat_ids = params[:seat_ids] || []
     screening_id = params[:screening_id]
+
+    if seat_ids.blank?
+      redirect_to screening_path(screening_id), alert: "No seats selected."
+      return
+    end
 
     ActiveRecord::Base.transaction do
       reservation = Reservation.create!(
