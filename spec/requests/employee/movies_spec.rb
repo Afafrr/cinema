@@ -111,6 +111,17 @@ RSpec.describe "/employee/movies", type: :request do
 
       expect(response).to have_http_status(:unprocessable_entity)
     end
+
+    it "does not allow customer to create a movie" do
+      user = User.create! customer_attributes
+      sign_in user
+
+      expect do
+        post employee_movies_url, params: { movie: valid_movie }
+      end.not_to change(Movie, :count)
+
+      expect(response).to redirect_to(movies_path)
+    end
   end
 
   describe "PATCH /employee/movies/:id" do
@@ -137,6 +148,18 @@ RSpec.describe "/employee/movies", type: :request do
       expect(movie.reload.title).to eq("The Matrix")
       expect(movie.duration_minutes).to eq(136)
     end
+
+    it "does not allow customer to update a movie" do
+      user = User.create! customer_attributes
+      movie = Movie.create! valid_movie
+      sign_in user
+
+      patch employee_movie_url(movie), params: { movie: updated_movie }
+
+      expect(response).to redirect_to(movies_path)
+      expect(movie.reload.title).to eq("The Matrix")
+      expect(movie.duration_minutes).to eq(136)
+    end
   end
 
   describe "DELETE /employee/movies/:id" do
@@ -150,6 +173,18 @@ RSpec.describe "/employee/movies", type: :request do
       end.to change(Movie, :count).by(-1)
 
       expect(response).to redirect_to(employee_movies_path)
+    end
+
+    it "does not allow customer to destroy a movie" do
+      user = User.create! customer_attributes
+      movie = Movie.create! valid_movie
+      sign_in user
+
+      expect do
+        delete employee_movie_url(movie)
+      end.not_to change(Movie, :count)
+
+      expect(response).to redirect_to(movies_path)
     end
   end
 end
