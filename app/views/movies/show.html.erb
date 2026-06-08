@@ -10,7 +10,7 @@
 
   <section class="grid grid-cols-[repeat(auto-fit,minmax(100px,150px))] gap-4">
     <% screenings.each do |screening| %>
-      <div class="flex flex-wrap gap-4 justify-evenly items-center rounded border py-1">
+      <%= link_to screening_path(screening.id), class: "flex flex-wrap gap-4 justify-evenly items-center rounded border py-1" do %>
         <div>
           <p class="text-sm font-semibold">Time:</p>
           <span class="text-lg"><%= screening.starts_at.strftime("%H:%M") %></span>
@@ -19,7 +19,7 @@
           <p class="text-sm font-semibold">Price:</p>
           <span class="text-lg"><%= screening.price %> zł</span>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </section>
 <% end %>

@@ -3,12 +3,13 @@ Rails.application.routes.draw do
 
   namespace :employee do # grouped under /employee
     get "dashboard", to: "dashboard#index", as: :dashboard
-    resources :movies, except: [ :show ]
+    resources :movies, except: [:show]
   end
 
   root "movies#index"
 
-  resources :movies, only: [ :index, :show ]
+  resources :movies, only: [:index, :show]
+  resources :screenings, only: [:show]
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
