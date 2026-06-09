@@ -1,11 +1,14 @@
-<h1>Movies</h1>
+<div class="md:w-2/3 w-full mx-auto">
 
-<div class="grid">
-    <% @movies.each do |movie| %>
-        <%= link_to movie_path(movie) do %>
-            <div >
-                <h2><%= movie.title %></h2>
-            </div>
+    <h1>Movies</h1>
+
+    <div class="grid">
+        <% @movies.each do |movie| %>
+            <%= link_to movie_path(movie) do %>
+                <div >
+                    <h2><%= movie.title %></h2>
+                </div>
+            <% end %>
         <% end %>
-    <% end %>
+    </div>
 </div>
