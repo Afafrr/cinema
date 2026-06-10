@@ -1,20 +1,20 @@
 <nav class=" bg-indigo-950 text-white">
-  <div class="flex justify-between max-w-5xl mb-4 px-6 py-2 sm:px-10 lg:px-12 mx-auto">
-    <div class="flex gap-2">
-      <%= link_to "Movies", movies_path, class:"btn" %>
-      <%= link_to "Reservations", reservations_path, class:"btn" %>
+  <div class="flex justify-between max-w-5xl mb-4 px-3 py-2 sm:px-10 lg:px-12 mx-auto">
+    <div class="flex md:gap-2">
+      <%= link_to "Movies", movies_path, class:"nav-btn" %>
+      <%= link_to "Reservations", reservations_path, class:"nav-btn" %>
     </div>
 
-    <div class="flex gap-2">
+    <div class="flex md:gap-2">
       <% if user_signed_in? %>
         <% if current_user.role == "employee" %>
-          <%= link_to "Employee Dashboard", employee_dashboard_path, class:"btn text-end" %>
+          <%= link_to "Employee Dashboard", employee_dashboard_path, class:"nav-btn text-end" %>
         <% end %>
-        <span class="btn cursor-default font-normal hidden sm:block"><%= current_user.email %></span>
-        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn" %>
+        <span class="nav-btn cursor-default font-normal hidden sm:block"><%= current_user.email %></span>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-btn" %>
       <% else %>
-        <%= link_to "Sign in", new_user_session_path, class:"btn" %>
-        <%= link_to "Sign up", new_user_registration_path, class:"btn" %>
+        <%= link_to "Sign in", new_user_session_path, class:"nav-btn" %>
+        <%= link_to "Sign up", new_user_registration_path, class:"nav-btn" %>
       <% end %>
     </div>
   </div>
