@@ -36,11 +36,17 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @screening = Screening.find(params[:screening_id])
     reservations = current_user.reservations.where(screening_id: params[:screening_id])
 
     if reservations.present?
       reservations.destroy_all
-      redirect_to reservations_path, notice: "Reservations cancelled successfully."
+
+      respond_to do |format|
+        format.turbo_stream
+        flash.now[:notice] = "Reservations cancelled successfully."
+        format.html { redirect_to reservations_path, notice: "Reservations cancelled successfully." } # fallback
+      end
     else
       redirect_to reservations_path, alert: "Reservation not found."
     end

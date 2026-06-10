@@ -5,16 +5,15 @@
     <% @reservations.group_by{ |reservation| reservation.screening_id }.each do |_screening_id, reservations_for_screening| %>
       <% screening = reservations_for_screening.first.screening %>
 
-      <section class="border rounded-md px-3 py-2">
+      <section id="<%= dom_id(screening, :reservations) %>" class="border rounded-md px-3 py-2">
         <h2 class="mb-3"><%= screening.movie.title %></h2>
-
         <p class="mb-3 text-sm">Date: <%= screening.starts_at.strftime("%Y-%m-%d %H:%M") %></p>
 
         <div>
           <p class="font-medium">Seats:</p>
 
           <% reservations_for_screening.each do |reservation| %>
-            <div >
+            <div>
               <% reservation.reservation_seats.group_by { |reservation_seat| reservation_seat.seat.row_no }.each do |row, reservation_seats| %>
                 <p class="text-sm">
                   Row: <%= row %>
@@ -27,6 +26,7 @@
             </div>
           <% end %>
         </div>
+
         <%= button_to "Cancel", screening_reservations_path(screening), method: :delete, class: "mt-4 px-10 btn btn-danger", data: { turbo_confirm: "Are you sure?" } %>
       </section>
     <% end %>
