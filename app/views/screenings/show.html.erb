@@ -4,7 +4,7 @@
 <%= @room.name %>
 <br>
 
-<%= form_with url: reservations_path, method: :post do %>
+<%= form_with url: reservations_path, method: :post , data: { controller: "seat-selection" } do %>
   <%= hidden_field_tag :screening_id, @screening.id %>
 
   <div class="flex flex-col items-center my-2 pb-5 overflow-x-auto">
@@ -19,8 +19,17 @@
               <% reserved = @reservation_seats_ids.include?(seat.id) %>
 
               <label class="<%= reserved ? "opacity-30" : "cursor-pointer" %>">
-                <%= check_box_tag "seat_ids[]", value: seat.id, checked: false, disabled: reserved, 
-                    class: "sr-only peer"
+                <%= check_box_tag "seat_ids[]", 
+                    value: seat.id, 
+                    checked: false, 
+                    disabled: reserved, 
+                    class: "sr-only peer",
+                    data: { 
+                      seat_no: seat.seat_no,
+                      row_no: seat.row_no,
+                      seat_selection_target: "seat",
+                      action: "change->seat-selection#update"
+                    }
                 %>
                 <%= image_tag "seat_icon.svg",
                   alt: "Seat Row #{row_no}, number #{seat.seat_no}",
@@ -32,8 +41,13 @@
         <% end %>
       </div>
   </div>
-  <div class="flex flex-col w-fit">
-    Counter
-    <%= submit_tag "Reserve", class:'btn' %>
+  <div class="flex flex-col">
+    <%= submit_tag "Reserve", 
+      class: 'btn w-fit mb-3 disabled:opacity-50 disabled:cursor-default disabled:text-gray-600 transition-opacity', 
+      disabled: true, 
+      data: { seat_selection_target: "submitButton" } 
+    %>
+    <p>Selected <span data-seat-selection-target="counter">0</span>:</p>
+    <ul data-seat-selection-target="seatInfo" class="grid grid-flow-col grid-rows-5 auto-cols-max gap-x-3 overflow-x-auto"> </ul>
   </div>
 <% end %>
