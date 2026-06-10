@@ -2,7 +2,7 @@
 
 <div class="w-full">
   <div class="flex items-start justify-between">
-    <h1 class="font-bold text-4xl">Movies</h1>
+    <h1>Movies</h1>
     <%= link_to "New movie", new_employee_movie_path, class: "btn btn-primary block" %>
   </div>
 
@@ -10,9 +10,9 @@
     <% if @employee_movies.any? %>
       <% @employee_movies.each do |employee_movie| %>
         <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <%= link_to employee_movie.title, movie_path(employee_movie) %>
+          <%= link_to employee_movie.title, movie_path(employee_movie), class: 'text-xl mb-4  sm:mb-0' %>
 
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
+          <div class="flex flex-col sm:flex-row w-full max-w-50 sm:w-auto space-x-2 space-y-2">
             <%= link_to "Edit", edit_employee_movie_path(employee_movie), class: "btn btn-secondary w-full sm:w-auto" %>
             <%= button_to "Destroy", employee_movie_path(employee_movie), method: :delete, class: "btn btn-danger w-full sm:w-auto", data: { turbo_confirm: "Are you sure?" } %>
            </div>

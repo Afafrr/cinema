@@ -7,7 +7,7 @@
 <%= form_with url: reservations_path, method: :post , data: { controller: "seat-selection" } do %>
   <%= hidden_field_tag :screening_id, @screening.id %>
 
-  <div class="flex flex-col items-center my-2 pb-5 overflow-x-auto">
+  <div class="flex flex-col items-center my-2 pb-5 overflow-x-auto select-none">
     <span class="mb-10">Screen</span>
       <div class="flex flex-col gap-3 md:gap-4 items-start w-fit">
 

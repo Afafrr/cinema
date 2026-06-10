@@ -22,7 +22,7 @@
 
 @layer components {
   .btn {
-    @apply inline-block rounded-md px-3.5 py-2.5 text-center text-sm font-medium cursor-pointer;
+    @apply inline-block flex items-center rounded-md px-3 py-2 text-center text-sm font-medium cursor-pointer;
   }
 
   .btn-primary {
@@ -35,5 +35,9 @@
 
   .btn-danger {
     @apply bg-red-600 text-white hover:bg-red-500;
+  }
+
+  .page-container {
+    @apply md:w-2/3 w-full mx-auto;
   }
 }
