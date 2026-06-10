@@ -2,6 +2,9 @@
 
 Application that simulates a basic cinema seat reservation system with customer and employee roles.
 
+Live demo:<br/>
+https://cinema-hh9m.onrender.com/
+
 Customers can: 
 - browse movies and screenings,
 - choose seats, 
