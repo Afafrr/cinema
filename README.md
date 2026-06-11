@@ -5,6 +5,12 @@ Application that simulates a basic cinema seat reservation system with customer 
 Live demo:<br/>
 https://cinema-hh9m.onrender.com/
 
+Test accounts:
+- customer1@gmail.com | customer1
+- employee@gmail.com  | employee
+
+<br>
+
 Customers can: 
 - browse movies and screenings,
 - choose seats, 
