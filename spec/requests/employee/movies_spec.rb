@@ -4,7 +4,7 @@ RSpec.describe "/employee/movies", type: :request do
     {
       email: "customer@example.com",
       password: "password123",
-      role: "customer",
+      role: "customer"
     }
   end
 
@@ -12,7 +12,7 @@ RSpec.describe "/employee/movies", type: :request do
     {
       email: "employee@example.com",
       password: "password123",
-      role: "employee",
+      role: "employee"
     }
   end
 
@@ -20,7 +20,7 @@ RSpec.describe "/employee/movies", type: :request do
     {
       title: "The Matrix",
       duration_minutes: 136,
-      description: "A programmer discovers the truth about reality.",
+      description: "A programmer discovers the truth about reality."
     }
   end
 
@@ -28,7 +28,7 @@ RSpec.describe "/employee/movies", type: :request do
     {
       title: "",
       duration_minutes: nil,
-      description: "Missing required fields",
+      description: "Missing required fields"
     }
   end
 
@@ -36,7 +36,7 @@ RSpec.describe "/employee/movies", type: :request do
     {
       title: "The Matrix Reloaded",
       duration_minutes: 138,
-      description: "Neo continues discovering the truth.",
+      description: "Neo continues discovering the truth."
     }
   end
 

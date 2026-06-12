@@ -2,7 +2,7 @@ class ReservationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @reservations = current_user.reservations.includes(reservation_seats: :seat, screening: [:movie, :room])
+    @reservations = current_user.reservations.includes(reservation_seats: :seat, screening: [ :movie, :room ])
   end
 
   def create

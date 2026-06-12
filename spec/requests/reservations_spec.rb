@@ -13,14 +13,14 @@ RSpec.describe "Reservations", type: :request do
 
   describe "POST /reservations" do
     it "unauthenticated - cannot reserve" do
-      post reservations_url, params: { screening_id: screening.id, seat_ids: [seat.id] }
+      post reservations_url, params: { screening_id: screening.id, seat_ids: [ seat.id ] }
 
       expect(response).to redirect_to(new_user_session_path)
     end
 
     it "authenticated - can reserve" do
       sign_in customer
-      post reservations_url, params: { screening_id: screening.id, seat_ids: [seat.id, second_seat.id] }
+      post reservations_url, params: { screening_id: screening.id, seat_ids: [ seat.id, second_seat.id ] }
 
       expect(Reservation.count).to eq(1)
       expect(ReservationSeat.count).to eq(2)
@@ -36,8 +36,8 @@ RSpec.describe "Reservations", type: :request do
     end
     it "same seat cannot be reserved twice" do
       sign_in customer
-      post reservations_url, params: { screening_id: screening.id, seat_ids: [seat.id, second_seat.id] }
-      post reservations_url, params: { screening_id: screening.id, seat_ids: [seat.id] }
+      post reservations_url, params: { screening_id: screening.id, seat_ids: [ seat.id, second_seat.id ] }
+      post reservations_url, params: { screening_id: screening.id, seat_ids: [ seat.id ] }
 
       expect(Reservation.count).to eq(1)
       expect(ReservationSeat.count).to eq(2)
@@ -45,8 +45,8 @@ RSpec.describe "Reservations", type: :request do
 
     it "same seat can be reserved in other screening" do
       sign_in customer
-      post reservations_url, params: { screening_id: screening.id, seat_ids: [seat.id] }
-      post reservations_url, params: { screening_id: second_screening.id, seat_ids: [seat.id] }
+      post reservations_url, params: { screening_id: screening.id, seat_ids: [ seat.id ] }
+      post reservations_url, params: { screening_id: second_screening.id, seat_ids: [ seat.id ] }
 
       expect(Reservation.count).to eq(2)
       expect(ReservationSeat.count).to eq(2)

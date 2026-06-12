@@ -13,12 +13,12 @@ end
 rooms_data = [
   {
     name: "Room 1",
-    rows: [7, 7, 7, 7],
+    rows: [ 7, 7, 7, 7 ]
   },
   {
     name: "Room 2",
-    rows: [6, 6, 6, 3],
-  },
+    rows: [ 6, 6, 6, 3 ]
+  }
 ]
 
 rooms = rooms_data.map do |room_data|
@@ -46,7 +46,7 @@ screenings_data = [
     day: 1.day.from_now,
     hour: 14,
     minute: 30,
-    price: 22,
+    price: 22
   },
   {
     movie_id: movies[0].id,
@@ -54,7 +54,7 @@ screenings_data = [
     day: 1.day.from_now,
     hour: 18,
     minute: 0,
-    price: 25,
+    price: 25
   },
   {
     movie_id: movies[1].id,
@@ -62,7 +62,7 @@ screenings_data = [
     day: 1.day.from_now,
     hour: 20,
     minute: 30,
-    price: 28,
+    price: 28
   },
   {
     movie_id: movies[1].id,
@@ -70,7 +70,7 @@ screenings_data = [
     day: 2.days.from_now,
     hour: 16,
     minute: 0,
-    price: 22,
+    price: 22
   },
   {
     movie_id: movies[2].id,
@@ -78,7 +78,7 @@ screenings_data = [
     day: 2.days.from_now,
     hour: 18,
     minute: 0,
-    price: 28,
+    price: 28
   },
   {
     movie_id: movies[2].id,
@@ -86,7 +86,7 @@ screenings_data = [
     day: 2.days.from_now,
     hour: 20,
     minute: 30,
-    price: 28,
+    price: 28
   },
   {
     movie_id: movies[2].id,
@@ -94,8 +94,8 @@ screenings_data = [
     day: 3.days.from_now,
     hour: 19,
     minute: 15,
-    price: 30,
-  },
+    price: 30
+  }
 ]
 
 screenings_data.each do |screening_data|
