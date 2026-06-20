@@ -1,0 +1,11 @@
+{
+  "version": "1.1.1",
+  "createdAt": "2026-06-20T14:55:29.863Z",
+  "updatedAt": "2026-06-20T14:55:29.863Z",
+  "options": {
+    "ignoredControllerIdentifiers": [
+      "alert"
+    ],
+    "ignoredAttributes": []
+  }
+}

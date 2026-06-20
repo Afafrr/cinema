@@ -1,15 +1,15 @@
 
 <% position_classes = "absolute left-1/2 top-6 -translate-x-1/2" %>
-<% base_classes = "mb-4 rounded border px-3 py-2 text-sm" %>
+<% base_classes = "mb-4 rounded border px-3 py-2 text-sm transition-opacity duration-300" %>
 
 <% if notice.present? %>
-  <span class="<%= position_classes %> <%= base_classes %> border-green-800 bg-green-100 text-green-900">
+  <span data-controller="alert" class="<%= position_classes %> <%= base_classes %> border-green-800 bg-green-100 text-green-900">
     <%= notice %>
   </span>
 <% end %>
 
 <% if alert.present? %>
-  <span class="<%= position_classes %> <%= base_classes %> border-red-800 bg-red-100 text-red-900">
+  <span data-controller="alert" class="<%= position_classes %> <%= base_classes %> border-red-800 bg-red-100 text-red-900">
     <%= alert %>
   </span>
 <% end %>
