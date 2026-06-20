@@ -3,11 +3,46 @@ Reservation.destroy_all
 Screening.destroy_all
 Seat.destroy_all
 Room.destroy_all
+Movie.destroy_all
+User.destroy_all
 
-movies = Movie.order(:title).to_a
+users_data = [
+  {
+    email: "customer1@gmail.com",
+    password: "customer1",
+    role: "customer"
+  },
+  {
+    email: "employee@gmail.com",
+    password: "employee",
+    role: "employee"
+  }
+]
 
-if movies.size < 3
-  raise "Create at least 3 movies before running seeds."
+users_data.each do |user_data|
+  User.create!(user_data)
+end
+
+movies_data = [
+  {
+    title: "Dune: Part Two",
+    description: "Paul Atreides joins the Fremen to seek justice and reclaim Arrakis.",
+    duration_minutes: 166
+  },
+  {
+    title: "The Batman",
+    description: "Batman uncovers corruption in Gotham while hunting the Riddler.",
+    duration_minutes: 176
+  },
+  {
+    title: "Oppenheimer",
+    description: "The story of J. Robert Oppenheimer and the creation of the atomic bomb.",
+    duration_minutes: 180
+  }
+]
+
+movies = movies_data.map do |movie_data|
+  Movie.create!(movie_data)
 end
 
 rooms_data = [
@@ -111,4 +146,4 @@ screenings_data.each do |screening_data|
 end
 
 puts "Seeded #{Room.count} rooms, #{Seat.count} seats, and #{Screening.count} screenings."
-puts "Users and movies were not changed."
+puts "Seeded #{User.count} users and #{Movie.count} movies."
