@@ -2,9 +2,27 @@ require "rails_helper"
 
 RSpec.describe "Reservations", type: :request do
   let(:movie) { Movie.create!(title: "Movie 1", duration_minutes: 120) }
-  let(:room) { Room.create!(name: "Room 1") }
-  let(:screening) { Screening.create!(movie: movie, room: room, starts_at: Time.current, price: 25) }
-  let(:second_screening) { Screening.create!(movie: movie, room: room, starts_at: 1.day.from_now, price: 25) }
+  let(:room) { Room.create!(name: "Reservations Request Spec Room") }
+  let(:starts_at) { Time.current }
+  let(:screening) do
+    Screening.create!(
+      movie: movie,
+      room: room,
+      starts_at: starts_at,
+      ends_at: starts_at + movie.duration_minutes.minutes,
+      price: 25
+    )
+  end
+  let(:second_starts_at) { 1.day.from_now }
+  let(:second_screening) do
+    Screening.create!(
+      movie: movie,
+      room: room,
+      starts_at: second_starts_at,
+      ends_at: second_starts_at + movie.duration_minutes.minutes,
+      price: 25
+    )
+  end
   let(:customer) { User.create!(email: "customer@example.com", password: "password123", role: "customer") }
   let(:seat) { Seat.create!(room: room, row_no: 1, seat_no: 1) }
   let(:second_seat) { Seat.create!(room: room, row_no: 1, seat_no: 2) }

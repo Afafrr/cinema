@@ -2,8 +2,17 @@ require "rails_helper"
 
 RSpec.describe ReservationSeat, type: :model do
   let(:movie) { Movie.create!(title: "Movie 1", duration_minutes: 120) }
-  let(:room) { Room.create!(name: "Room 1") }
-  let(:screening) { Screening.create!(movie: movie, room: room, starts_at: Time.current, price: 25) }
+  let(:room) { Room.create!(name: "Reservation Seat Spec Room") }
+  let(:starts_at) { Time.current }
+  let(:screening) do
+    Screening.create!(
+      movie: movie,
+      room: room,
+      starts_at: starts_at,
+      ends_at: starts_at + movie.duration_minutes.minutes,
+      price: 25
+    )
+  end
   let(:seat) { Seat.create!(room: room, row_no: 1, seat_no: 1) }
   let(:user1) { User.create!(email: "user1@example.com", password: "password") }
   let(:user2) { User.create!(email: "user2@example.com", password: "password") }
@@ -19,7 +28,14 @@ RSpec.describe ReservationSeat, type: :model do
   end
 
   it "allows the same seat to be reserved on a different screening" do
-    other_screening = Screening.create!(movie: movie, room: room, starts_at: 1.day.from_now, price: 25)
+    other_starts_at = 1.day.from_now
+    other_screening = Screening.create!(
+      movie: movie,
+      room: room,
+      starts_at: other_starts_at,
+      ends_at: other_starts_at + movie.duration_minutes.minutes,
+      price: 25
+    )
 
     ReservationSeat.create!(reservation: reservation1, screening: screening, seat: seat)
     reservation_for_other_screening = Reservation.create!(user: user2, screening: other_screening)
