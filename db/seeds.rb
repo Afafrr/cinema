@@ -134,13 +134,17 @@ screenings_data = [
 ]
 
 screenings_data.each do |screening_data|
+  movie = Movie.find(screening_data[:movie_id])
+  starts_at = screening_data[:day].change(
+    hour: screening_data[:hour],
+    min: screening_data[:minute],
+  )
+
   Screening.create!(
-    movie_id: screening_data[:movie_id],
+    movie_id: movie.id,
     room_id: screening_data[:room_id],
-    starts_at: screening_data[:day].change(
-      hour: screening_data[:hour],
-      min: screening_data[:minute],
-    ),
+    starts_at: starts_at,
+    ends_at: starts_at + movie.duration_minutes.minutes,
     price: screening_data[:price],
   )
 end

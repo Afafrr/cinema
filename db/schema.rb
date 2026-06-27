@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_06_163722) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_27_102842) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gist"
   enable_extension "pg_catalog.plpgsql"
 
   # Custom types defined in this database.
@@ -57,6 +58,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_163722) do
 
   create_table "screenings", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.datetime "ends_at"
     t.bigint "movie_id", null: false
     t.integer "price", null: false
     t.bigint "room_id", null: false
@@ -65,6 +67,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_163722) do
     t.index ["movie_id"], name: "index_screenings_on_movie_id"
     t.index ["room_id"], name: "index_screenings_on_room_id"
     t.index ["starts_at", "room_id"], name: "index_screenings_on_starts_at_and_room_id", unique: true
+    t.exclusion_constraint "room_id WITH =, tsrange(starts_at, ends_at, '[)'::text) WITH &&", using: :gist, name: "no_overlapping_screenings"
   end
 
   create_table "seats", force: :cascade do |t|
