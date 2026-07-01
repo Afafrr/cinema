@@ -30,9 +30,24 @@ RSpec.describe Screening, type: :model do
       room: room,
       starts_at: later_starts_at,
       ends_at: later_starts_at + movie.duration_minutes.minutes,
-      price: 25
+      price: 25,
     )
 
     expect(screening_at_different_time).to be_valid
+  end
+
+  it "does not allows screenings at overlapping times in the same room" do
+    later_starts_at = starts_at + 1.hour + 30.minutes
+
+    Screening.create!(movie: movie, room: room, starts_at: starts_at, ends_at: ends_at, price: 25)
+    screening_at_overlapping_time = Screening.new(
+      movie: movie,
+      room: room,
+      starts_at: later_starts_at,
+      ends_at: later_starts_at + movie.duration_minutes.minutes,
+      price: 25,
+    )
+
+    expect(screening_at_overlapping_time).not_to be_valid
   end
 end
